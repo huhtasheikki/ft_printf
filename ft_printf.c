@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 12:44:38 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/03/23 17:03:00 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/04/15 13:26:47 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,37 +58,32 @@ int		ft_initialize(t_all *all, const char* format)
 {
 	all->format_ptr = (char*)format;
 	all->ready_print = ft_strnew(0);
-	
+
 	ft_strncpy(all->flags_str, "-0+ #", FLAGS + 1);
-	ft_bzero(all->flags, sizeof(int) * FLAGS);
 	ft_init_flags_ft_ptr(all);
 
 	ft_strncpy(all->l_modifier_str, "hhlljtzqL", L_MODIFIER + 1);
-	ft_bzero(all->l_modifier, sizeof(int) * L_MODIFIER);
-
 	ft_strncpy(all->format_id_str, "diouxXDOUeEfFgGaACcSspn%", IDS + 1);
-	ft_bzero(all->format_id, sizeof(int) * IDS);
 	ft_init_format_ft_ptr(all);
-
 	return (0);
 }
 
 int		ft_printf(const char *format, ...)
 {
 	t_all		*all;
+	size_t		len;
 
 	if (!(all = (t_all*)malloc(sizeof(t_all))))
 		return (-1);
 	va_start(all->ap, format);
 	va_copy(all->ap2, all->ap);
 	ft_initialize(all, format);
-	if (*all->format_ptr)
+	if (*all->format_ptr) //onko oikein
 		ft_parser(all);
-	free(all->ready_print);
-	free(all);
 	va_end(all->ap);
-//	ft_putstr(all->ready_print);
-
+	ft_putstr(all->ready_print);
+	len = ft_strlen(all->ready_print);
+	ft_del_all(all);
 //	return (ft_strlen(all->ready_print));
-	return (0);
+	return (len);
 }

@@ -6,13 +6,14 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 17:37:23 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/03/24 12:58:02 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/04/15 16:00:57 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_DEFS
 # define FT_PRINTF_DEFS
 
+#include <stdlib.h>
 #include <stdarg.h>
 
 # define FLAGS 5
@@ -23,8 +24,13 @@ typedef struct		s_all
 {
 	va_list			ap;
 	va_list			ap2;
+	intmax_t		arg_i;
+	uintmax_t		arg_ui;
+	unsigned int	unsign_arg;
 	char			*format_ptr;
+	char			padding_char;
 	size_t			base;
+	int				upper_case;
 
 /* FLAGS = '-' '0' '+' 'BLANK' '#'  */
 	int				flags[FLAGS];
@@ -44,11 +50,16 @@ typedef struct		s_all
 
 /* FORMAT IDENTIFIER = "diouxXDOUeEfFgGaACcSspn%" */
 	int				format_id[IDS];
+	char			format_char;
 	char			format_id_str[IDS + 1];
 	void			(*format_ft_ptr[IDS])(void*);
-
+	
 	char			*ready_print;
 	char			*variable_str;
+	char			*variable_begin;
+	char			*variable_end;
+	char			*padding_left;
+	char			*padding_right;
 }					t_all;
 
 #endif

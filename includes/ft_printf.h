@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 20:10:08 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/03/23 18:16:16 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/04/15 16:01:38 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@ int					ft_printf(const char *format, ...);
 
 void				ft_str_cp_till_percent(t_all *all);
 void				ft_combine_strs(char *s1, t_all *all);
+void				ft_free_parser(t_all *all);
+
+void				ft_arg_dioux(void *param);
+void				ft_l_modifier(t_all *all); /* NOT NAMED WELL */
+void				ft_flags(t_all *all); /* NOT NAMED WELL */
+void				ft_format_id(t_all *all); /* NOT NAMED WELL */
+
+void				ft_get_nbr(t_all *all);
+void				ft_get_u_nbr(t_all *all);
 
 int					ft_get_asterisk(t_all *all); /* not done */
 
@@ -96,7 +105,8 @@ void				ft_test(void *param); /* USELESS, DELETE WHEN READY */
 void				ft_parser(t_all *all);
 
 void				ft_reset_variables(t_all *all);
-void				ft_variable_format_id(t_all *all);
+void				ft_get_format_id(t_all *all);
 void				ft_variable_convert_to_str(t_all *all);
+void				ft_del_all(t_all *all);
 
 #endif

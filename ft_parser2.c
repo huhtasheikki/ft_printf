@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 16:14:42 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/03/23 18:18:36 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/04/15 16:04:16 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,23 @@ void		ft_test(void *param)
 
 void		ft_reset_variables(t_all *all)
 {
+	all->variable_str = ft_strnew(0);
+	all->variable_begin = ft_strnew(0);
+	all->variable_end = ft_strnew(0);
+	all->padding_left = ft_strnew(0);
+	all->padding_right = ft_strnew(0);
+	all->width = 0;
+	all->period = 0;
+	all->precision = 0;
+	all->base = 10;
+	all->upper_case = 0;
+	all->padding_char = ' ';
 	ft_bzero(all->flags, sizeof(int) * FLAGS);
 	ft_bzero(all->l_modifier, sizeof(int) * L_MODIFIER);
 	ft_bzero(all->format_id, sizeof(int) * IDS);
 }
 
-void		ft_variable_format_id(t_all *all)
+void		ft_get_format_id(t_all *all)
 {
 	int		i;
 
@@ -34,6 +45,7 @@ void		ft_variable_format_id(t_all *all)
 		if (*all->format_ptr == all->format_id_str[i])
 		{
 			all->format_id[i] = 1;
+			all->format_char = *all->format_ptr;
 			all->format_ptr++;
 			break ;
 		}
@@ -67,7 +79,6 @@ void		ft_str_cp_till_percent(t_all *all)
 {
 	size_t		len;
 	char		*text_str;
-//	char		*temp_ptr;
 	char		*percentage_ptr;
 
 	if (!(percentage_ptr = ft_strchr(all->format_ptr, '%')))
@@ -75,18 +86,7 @@ void		ft_str_cp_till_percent(t_all *all)
 	else
 		len = percentage_ptr - all->format_ptr;
 	text_str = ft_strsub(all->format_ptr, 0, len);
-
 	ft_combine_strs(text_str, all);
-/*	
-	len = ft_strlen(all->ready_print) + ft_strlen(text_str);
-	temp_ptr = all->ready_print;
-	if (!(all->ready_print = ft_memalloc(len + 1)))
-		exit (0);
-	ft_strcat(all->ready_print, temp_ptr);
-	ft_memdel((void**)&temp_ptr);
-	ft_strcat(all->ready_print, text_str);
 	ft_memdel((void**)&text_str);
-*/
 	all->format_ptr = percentage_ptr;
-//	}
 }

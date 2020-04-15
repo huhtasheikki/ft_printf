@@ -6,14 +6,14 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 13:26:25 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/03/24 11:06:05 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:16:53 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <unistd.h>
 
-void		ft_variable_flags(t_all *all)
+void		ft_get_flags(t_all *all)
 {
 	int		i;
 
@@ -26,10 +26,10 @@ void		ft_variable_flags(t_all *all)
 			all->format_ptr++;
 		}
 		i++;
-	}		
+	}
 }
 
-void		ft_variable_width(t_all *all)
+void		ft_get_width(t_all *all)
 {
 	all->width = 0;
 	if (*all->format_ptr == '*')
@@ -47,7 +47,7 @@ void		ft_variable_width(t_all *all)
 	}
 }
 
-void		ft_variable_precision(t_all *all)
+void		ft_get_precision(t_all *all)
 {
 	all->period = 0;
 	all->precision = 0;
@@ -62,7 +62,7 @@ void		ft_variable_precision(t_all *all)
 		}
 		else
 		{
-			while(*all->format_ptr >= '0' && *all->format_ptr <= '9')
+			while (*all->format_ptr >= '0' && *all->format_ptr <= '9')
 			{
 				all->precision = (all->precision * 10) + get_nbr(*all->format_ptr);
 				all->format_ptr++;
@@ -71,7 +71,7 @@ void		ft_variable_precision(t_all *all)
 	}
 }
 
-void		ft_variable_l_modifier(t_all *all)
+void		ft_get_l_modifier(t_all *all)
 {
 	int		i;
 
@@ -109,20 +109,17 @@ void		ft_parser(t_all *all)
 	{
 		ft_reset_variables(all);
 		ft_str_cp_till_percent(all);
-		ft_putendl("This is before percent");
-		ft_putendl(all->ready_print);
 		if (all->format_ptr && *all->format_ptr == '%')
 		{
 			all->format_ptr++;
-			ft_variable_flags(all);
-			ft_variable_width(all);
-			ft_variable_precision(all);
-			ft_variable_l_modifier(all);
-			ft_variable_format_id(all);
+			ft_get_flags(all);
+			ft_get_width(all);
+			ft_get_precision(all);
+			ft_get_l_modifier(all);
+			ft_get_format_id(all);
+			ft_arg_dioux(all);
 			ft_variable_convert_to_str(all);
 		}
+		ft_free_parser(all);
 	}
-	ft_putendl("TOIMII");
-	ft_putendl(all->ready_print);
-
 }
