@@ -6,13 +6,13 @@
 #    By: hhuhtane <hhuhtane@student.hive.f...>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 13:27:05 by hhuhtane          #+#    #+#              #
-#    Updated: 2020/03/26 12:15:10 by hhuhtane         ###   ########.fr        #
+#    Updated: 2020/04/29 12:54:55 by hhuhtane         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = a.out
 
-SRC = main.c ft_printf.c ft_parser.c ft_parser2.c ft_variables.c ft_flags.c ft_tools1.c ft_parser3.c
+SRC = main.c ft_printf.c ft_initialize.c ft_parser.c ft_parser2.c ft_variables.c ft_flags.c ft_tools1.c ft_parser3.c ft_collect.c
 
 AFILE = libft/libft.a
 

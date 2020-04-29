@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 20:10:08 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/04/15 16:01:38 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/04/29 12:54:34 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ typedef struct		s_all
 */
 
 int					ft_printf(const char *format, ...);
+int					ft_initialize(t_all *all, const char *format);
+
+void				ft_collect_type(t_all *all);
 
 void				ft_str_cp_till_percent(t_all *all);
 void				ft_combine_strs(char *s1, t_all *all);

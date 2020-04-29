@@ -1,53 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_search.c                                        :+:      :+:    :+:   */
+/*   ft_collect.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/24 11:34:10 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/03/24 13:01:55 by hhuhtane         ###   ########.fr       */
+/*   Created: 2020/04/29 12:05:41 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/04/29 12:10:39 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_l_modifier(t_all *all)
+void	ft_collect_type(t_all *all)
 {
-	size_t		i;
-
-	i = 0;
-	while (i < L_MODIFIER)
-	{
-		if (all->l_modifier[i])
-			all->variable_str;
-		i++;
-	}
+	/* ADD LETTERS AS YOU FIND OUT WHICH ONES */
+	if (ft_strchr("di", all->format_char))
+		all->arg_i = va_arg(all->ap, intmax_t);
+	if (ft_strchr("ouxX", all->format_char))
+		all->arg_i = va_arg(all->ap, intmax_t);
 }
-
-void	ft_flags(t_all *all)
-{
-	size_t		i;
-
-	i = 0;
-	while (i < FLAGS)
-	{
-		if (all->flags[i])
-			all->flags_ft_ptr[i](all);
-		i++;
-	}
-}
-
-void	ft_format_id(t_all *all)
-{
-	size_t		i;
-
-	i = 0;
-	while (i < IDS)
-	{
-		if (all->flags[i])
-			all->flags_ft_ptr[i](all);
-		i++;
-	}
-}
-

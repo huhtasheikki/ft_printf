@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 16:14:42 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/04/15 16:04:16 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/04/28 22:18:43 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void		ft_reset_variables(t_all *all)
 	all->base = 10;
 	all->upper_case = 0;
 	all->padding_char = ' ';
+	ft_bzero(all->prefix, sizeof(char) * PREFIX);
 	ft_bzero(all->flags, sizeof(int) * FLAGS);
 	ft_bzero(all->l_modifier, sizeof(int) * L_MODIFIER);
 	ft_bzero(all->format_id, sizeof(int) * IDS);
@@ -75,13 +76,15 @@ int			ft_get_asterisk(t_all *all)
 	return (asterisk);
 }
 
+/* make sure you will take care of backlash as well */
 void		ft_str_cp_till_percent(t_all *all)
 {
 	size_t		len;
 	char		*text_str;
 	char		*percentage_ptr;
 
-	if (!(percentage_ptr = ft_strchr(all->format_ptr, '%')))
+	if (!(percentage_ptr = ft_strchr(all->format_ptr, '%')) &&
+		!(percentage_ptr = ft_strchr(all->format_ptr, '\\')))
 		len = ft_strlen(all->format_ptr);
 	else
 		len = percentage_ptr - all->format_ptr;

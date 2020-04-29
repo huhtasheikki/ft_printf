@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 18:04:30 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/04/15 11:23:09 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/04/29 11:50:27 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ void	ft_del_all(t_all *all)
 		free(all->ready_print);
 	if (all->format_ptr)
 		free(all->format_ptr);
-	if (all)
-		free(all);
+	if (all->padding_left)
+		free(all->padding_left);
+	if (all->padding_right)
+		free(all->padding_right);
+
+//	if (all)
+//		free(all);
 }

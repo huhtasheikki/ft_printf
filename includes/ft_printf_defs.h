@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 17:37:23 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/04/15 16:00:57 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/04/28 20:33:17 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define FLAGS 5
 # define L_MODIFIER 9
 # define IDS 24
+# define PREFIX 2
 
 typedef struct		s_all
 {
@@ -31,6 +32,7 @@ typedef struct		s_all
 	char			padding_char;
 	size_t			base;
 	int				upper_case;
+	int				arg_len;
 
 /* FLAGS = '-' '0' '+' 'BLANK' '#'  */
 	int				flags[FLAGS];
@@ -53,8 +55,20 @@ typedef struct		s_all
 	char			format_char;
 	char			format_id_str[IDS + 1];
 	void			(*format_ft_ptr[IDS])(void*);
-	
+
+	char			type_diouxx[7];
+	char			type_dou[4];
+	char			type_ee[3];
+	char			type_ff[3];
+	char			type_gg[3];
+	char			type_aa[3];
+	char			type_cc;
+	char			type_c;
+	char			type_ss;
+	char			type_s;
+
 	char			*ready_print;
+	char			prefix[PREFIX + 1];
 	char			*variable_str;
 	char			*variable_begin;
 	char			*variable_end;

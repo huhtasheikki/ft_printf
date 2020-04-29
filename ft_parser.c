@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 13:26:25 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/04/15 14:16:53 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/04/29 11:38:58 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,10 @@ void		ft_parser(t_all *all)
 	{
 		ft_reset_variables(all);
 		ft_str_cp_till_percent(all);
-		if (all->format_ptr && *all->format_ptr == '%')
+		if (all->format_ptr && *all->format_ptr == '\\')
+//			ft_backlash(all);
+			(void)all;
+		else if (all->format_ptr && *all->format_ptr == '%')
 		{
 			all->format_ptr++;
 			ft_get_flags(all);
