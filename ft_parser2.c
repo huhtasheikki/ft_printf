@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 16:14:42 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/04/28 22:18:43 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/07/02 16:23:42 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int			ft_get_asterisk(t_all *all)
 /* make sure you will take care of backlash as well */
 void		ft_str_cp_till_percent(t_all *all)
 {
-	size_t		len;
+	intmax_t	len;
 	char		*text_str;
 	char		*percentage_ptr;
 

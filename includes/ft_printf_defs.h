@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 17:37:23 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/04/28 20:33:17 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/07/02 16:19:42 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct		s_all
 	va_list			ap2;
 	intmax_t		arg_i;
 	uintmax_t		arg_ui;
+	double			arg_d;
+	char			*arg_str;
 	unsigned int	unsign_arg;
 	char			*format_ptr;
 	char			padding_char;
@@ -74,6 +76,7 @@ typedef struct		s_all
 	char			*variable_end;
 	char			*padding_left;
 	char			*padding_right;
+	intmax_t		print_len;
 }					t_all;
 
 #endif

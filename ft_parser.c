@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 13:26:25 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/04/29 11:38:58 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/07/02 16:05:04 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,9 @@ void		ft_parser(t_all *all)
 			ft_get_precision(all);
 			ft_get_l_modifier(all);
 			ft_get_format_id(all);
+
+			ft_collect_type(all);
+
 			ft_arg_dioux(all);
 			ft_variable_convert_to_str(all);
 		}
