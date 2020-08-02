@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_specifiers1.c                                   :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: hhuhtane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/17 11:17:34 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/03/17 12:19:24 by hhuhtane         ###   ########.fr       */
+/*   Created: 2019/11/05 12:46:22 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/07/27 19:38:37 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_signed_decimal(void* param)
-{
-	(void)param;
-}
+#include "libft.h"
 
-void	ft_signed_decimal2(void* param)
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	(void)param;
+	if (*alst && new)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
 }
-
-void	ft_unsigned_octal(void* param)
-{
-	(void)param;
-}
-
-void	ft_unsigned_decimal(void* param)
-{
-	(void)param;
-}
-

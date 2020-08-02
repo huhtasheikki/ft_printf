@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_l_modifiers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/15 12:44:38 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/04/29 11:56:29 by hhuhtane         ###   ########.fr       */
+/*   Created: 2020/08/02 12:29:15 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/08/02 13:16:33 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include "ft_printf.h"
 
-int		ft_printf(const char *format, ...)
+void		ft_l_modifiers(t_all *all)
 {
-	t_all		all;
-//	size_t		len;
+	int		i;
 
-	if (!(ft_initialize(&all, format)))
-		return (0); // nolla vai miinus yksi
-	if (*all.format_ptr) //onko oikein
+	i = 0;
+	while (i < L_MOD_SIZE)
 	{
-		va_start(all.ap, format);
-		ft_parser(&all);
-		va_end(all.ap);
+		if ((all->format_info & (1 << (i + L_MOD_INDEX))))
+			all->lmod_fun_ptr[i](all);
+		i++;
+		ft_putnbr(i);
 	}
-	ft_putstr(all.ready_print);
-//	len = ft_strlen(all.ready_print);
-	ft_del_all(&all);
-//	return (len);
-	return (ft_strlen(all.ready_print));
+	ft_putendl("L MODIFIER MUUNNOS OHI!");
 }

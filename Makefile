@@ -1,45 +1,72 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hhuhtane <hhuhtane@student.hive.f...>      +#+  +:+       +#+         #
+#    By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/01/21 13:27:05 by hhuhtane          #+#    #+#              #
-#    Updated: 2020/04/29 12:54:55 by hhuhtane         ###   ########.fr        #
+#    Created: 2020/07/24 18:09:10 by hhuhtane          #+#    #+#              #
+#    Updated: 2020/08/02 13:05:11 by hhuhtane         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
-NAME = a.out
+NAME = libftprintf.a
+LIBFT_A = libft.a
 
-SRC = main.c ft_printf.c ft_initialize.c ft_parser.c ft_parser2.c ft_variables.c ft_flags.c ft_tools1.c ft_parser3.c ft_collect.c
+CFILE = ft_printf.c \
+		ft_initialize.c \
+		ft_parse.c \
+		get_variable_info.c \
+		get_variable.c \
+		ft_reset.c \
+		ft_arg_convert.c \
+		ft_flags_fun.c \
+		ft_field_width.c \
+		ft_l_modifiers.c \
+		ft_lmod_fun.c \
+		convert_di.c
 
-AFILE = libft/libft.a
+OBJ = $(CFILE:.c=.o)
 
-OBJ = $(patsubst %.c, %.o, $(SRC))
+PRINTF_H = -I includes/
+LIBFT_H = -I srcs/libft/
 
-FLAGS = -Wall -Wextra -Werror -o $(NAME) -I includes
+SRC_DIR = srcs/
+OBJ_DIR = obj/
+LIBFT_DIR = srcs/libft/
 
-FRAMEWORK = -o $(NAME) -I includes
+OFILE = $(CFILE:$%.c=%.o)
+SRCS = $(addprefix $(SRC_DIR),$(CFILE))
 
-LIBFTX = ./libft/libft.a
+COMPILE = gcc $(PRINTF_H) $(LIBFT_H) -c -o
 
-all: $(NAME)
+CC = gcc
+FLAGS = -Wall -Wextra -Werror
+
+COLOR_RESET = \033[0m
+COLOR_WAIT = \033[0;31m
+COLOR_OK = \033[0;32m
+COLOR_TITLE = \033[1;37m
+
+all : $(NAME)
 
 $(NAME):
-	@make -C libft
-	@gcc $(FLAGS) $(SRC) $(AFILE)
-	@echo "READY TO GO!"
+		@echo "START BUILDING $(COLOR_TITLE)$(LIBFT_A)$(COLOR_RESET)"
+		@make -C $(LIBFT_DIR) 
+		@echo "COPY $(COLOR_TITLE)$(LIBFT_A)$(COLOR_RESET) to root [$(COLOR_OK) OK $(COLOR_RESET)]"
+		@cp $(LIBFT_DIR)$(LIBFT_A) ./$(NAME)
+		@$(CC) $(FLAGS) $(PRINTF_H) $(LIBFT_H) -c $(SRCS)
+		@ar rc $(NAME) $(OBJ)
+		@ranlib $(NAME)
 
-clean:
-	@make -C libft clean
-	@rm -f $(OBJ)
-	@find . -type f -name '*~' -print -delete -o -name '#*#' -print -delete
-	@echo "Objects cleaned"
+test: fclean all
+		$(CC) $(LIBFT_H) $(NAME) main.c
 
-fclean: clean
-	@make -C libft fclean
-	@/bin/rm -f $(NAME)
-	@echo "Totally cleaned"
+norm:
+		@echo "Norminette $(COLOR_TITLE)$(SRC_DIR)$(COLOR_RESET)"
+		norminette ./srcs
+		@echo "Norminette $(COLOR_TITLE)$(LIBFT_DIR)$(COLOR_RESET)"
+		norminette $(LIBFT_DIR)
 
-re:	fclean all
+fclean:
+	rm $(NAME)

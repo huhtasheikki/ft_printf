@@ -5,111 +5,140 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/15 20:10:08 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/04/29 12:54:34 by hhuhtane         ###   ########.fr       */
+/*   Created: 2020/07/24 17:41:37 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/08/02 13:07:30 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "ft_printf_defs.h"
-
-# include <stdarg.h>
 # include <stdlib.h>
-# include <unistd.h>
 
-# include "../libft/libft.h"
+/* THESE SHOULD BE FOUND FROM .C FILES WHEN NEEDED*/
+# include <stdarg.h>
+# include "libft.h"
 
-/*
-# define FLAGS 5
-# define L_MODIFIER 9
-# define IDS 23
+/*===================*/
+/*   DEFINE MACROS   */
+/*===================*/
+/* FLAGS - macros*/
+/* - if you add more flags, remember to change FLAGS_SIZE */
+# define FLAGS "#0- +*$'"
+# define FLAGS_SIZE 8
+# define FLAGS_MASK 0 // WHY??
+# define HASH_INDEX 0
+# define ZERO_INDEX 1
+# define MINUS_INDEX 2
+# define SPACE_INDEX 3
+# define PLUS_INDEX 4
+# define STAR_INDEX 5
+# define DOLLAR_INDEX 6
+# define APOSTROPHE_INDEX 7
+# define CDINPSU_MASK 245768
 
+/* PRECISION - macros  */
+# define PRECISION_INDEX 8
+
+/* LENGTH MODIFIERS - macros*/
+# define L_MODIFIER "hhllL"
+# define L_MOD_MASK 15872 // 0011 1110 0000 0000
+# define L_MOD_INDEX 9
+# define L_MOD_LAST 13
+# define L_MOD_SIZE 5
+# define H_INDEX 9
+# define HH_INDEX 10
+# define L_INDEX 11
+# define LL_INDEX 12
+# define UP_L_INDEX 13
+
+/* CONVERSION SPECIFIERS */
+# define FORMAT_MASK 4095 // = 0000 1111 1111 1111 (cspdiouxXegb)
+# define FORMAT_ID "diouxXfFeEgGaAcspnb%" // "cspdiouxXegb" "diouxXDOUeEfFgGaACcSspn%"
+# define FORMAT_ID_SIZE 20
+# define DIOUXX_MASK 63
+# define OUXX_MASK 60
+# define AAEEFFGG_MASK 16320
+# define DI_MASK 3
+# define D_INDEX 0
+# define I_INDEX 1
+# define O_INDEX 2
+# define U_INDEX 3
+# define X_INDEX 4
+# define UPX_INDEX 5
+# define E_MASK // bonus feature
+# define G_MASK // BONUS FEATURE
+# define B_MASK // BONUS FEATURE
+# define N_INDEX 17
+
+# define PREFIX 2
+
+/* VARIOUS ARGUMENTS LIST AND ALL THE RESTS */
 typedef struct		s_all
 {
-	va_list			ap;
-	va_list			ap2;
+	const char		*format;
 	char			*format_ptr;
+	va_list			args;
+	t_list			*parsed_args; // THIS OR NOT
+	t_list			*last_arg;
+	size_t			*len;
 
-	int				flags[FLAGS];
-	char			flags_str[FLAGS + 1];
-	void			(*flags_ft_ptr[5])(t_all*);
+	char			flags_str[FLAGS_SIZE + 1]; // CHANGE THE VALUE THE MIN NEEDED
+	char			l_modifier_str[L_MOD_SIZE + 1]; // size?
+	char			format_id_str[FORMAT_ID_SIZE + 1];
+	void			(*convert_fun_ptr[FORMAT_ID_SIZE])(void*);
+	void			(*flags_fun_ptr[FLAGS_SIZE])(void*);
+	void			(*lmod_fun_ptr[L_MOD_SIZE])(void*);
 
-	int				widht;
-
-	int				period;
+	int				format_info;
+	size_t			width;
 	int				precision;
+	int				flags;
+//	char			format_id;
+	int				format_id;
 
-	int				l_modifier[L_MODIFIER];
-	char			l_modifier_str[L_MODIFIER + 1];
+	intmax_t		arg_int;
+//	int				arg_int;
+//	unsigned int	arg_uint;
+	double			arg_double;
+	size_t			arg_len;
+	int				arg_base;
 
-	int				format_id[IDS];
-	char			format_id_str[IDS + 1];
-	void			(*format_ft_ptr[IDS])(t_all*);
-
-	char			*ready_print;
-	char			*variable_str;
+	char			prefix[PREFIX + 1];
+	char			padding_char;
+	char			*padding_str;
 }					t_all;
-*/
 
+/*=====================*/
+/* FUNCTION PROTOTYPES */
+/*=====================*/
 int					ft_printf(const char *format, ...);
-int					ft_initialize(t_all *all, const char *format);
+int					ft_initialize(t_all *all, const char *format, size_t *len);
+int					get_variable(t_all *all);
+int					ft_arg_convert(t_all *all);
 
-void				ft_collect_type(t_all *all);
+void				convert_di(void *param);
 
-void				ft_str_cp_till_percent(t_all *all);
-void				ft_combine_strs(char *s1, t_all *all);
-void				ft_free_parser(t_all *all);
+void				ft_parse(t_all *all);
+void				get_variable_info(t_all *all); // change return value to int
+void				ft_reset_format_info(t_all *all);
 
-void				ft_arg_dioux(void *param);
-void				ft_l_modifier(t_all *all); /* NOT NAMED WELL */
-void				ft_flags(t_all *all); /* NOT NAMED WELL */
-void				ft_format_id(t_all *all); /* NOT NAMED WELL */
+/* FLAGS */
+void				ft_flag_hash(void *param);
+void				ft_flag_zero(void *param);
+void				ft_flag_minus(void *param);
+void				ft_flag_space(void *param);
+void				ft_flag_plus(void *param);
+/* ?????? MORE FLAGS */
 
-void				ft_get_nbr(t_all *all);
-void				ft_get_u_nbr(t_all *all);
+/* L MODIFIERS */
+void				ft_l_modifiers(t_all *all);
+void				ft_h_mod(void *param);
+void				ft_hh_mod(void *param);
+void				ft_l_mod(void *param);
+void				ft_ll_mod(void *param);
+void				ft_upl_mod(void *param);
 
-int					ft_get_asterisk(t_all *all); /* not done */
-
-void				ft_flags_minus(void *param); /* not done */
-void				ft_flags_zero(void *param); /* not done */
-void				ft_flags_plus(void *param); /* not done */
-void				ft_flags_blank(void *param); /* not done */
-void				ft_flags_hash(void *param); /* not done */
-
-void				ft_signed_decimal(void *param); /* not done */
-void				ft_unsigned_octal(void *param); /* not done */
-void				ft_unsigned_decimal(void *param); /* not done */
-void				ft_unsigned_hexa_lo(void *param); /* not done */
-void				ft_unsigned_hexa_up(void *param); /* not done */
-void				ft_long_int_decimal(void *param); /* not done */
-void				ft_long_int_octal(void *param); /* not done */
-void				ft_long_int_unsigned_decimal(void *param); /* not done */
-void				ft_double_e(void *param); /* not done */
-void				ft_double_E(void *param); /* not done */
-void				ft_float(void *param); /* not done */
-void				ft_double_ef(void *param); /* not done */
-void				ft_double_EF(void *param); /* not done */
-void				ft_double_a(void *param); /* not done */
-void				ft_double_A(void *param); /* not done */
-void				ft_unsigned_char_with_l(void *param); /* not done */
-void				ft_unsigned_char(void *param); /* not done */
-void				ft_unsigned_octal(void *param); /* not done */
-void				ft_str(void *param); /* not done */
-void				ft_str_with_l(void *param); /* not done */
-void				ft_void_ptr(void *param); /* not done */
-void				ft_number_char_so_far(void *param); /* not done */
-void				ft_percentage(void *param); /* not done */
-
-
-void				ft_test(void *param); /* USELESS, DELETE WHEN READY */
-
-void				ft_parser(t_all *all);
-
-void				ft_reset_variables(t_all *all);
-void				ft_get_format_id(t_all *all);
-void				ft_variable_convert_to_str(t_all *all);
-void				ft_del_all(t_all *all);
+int					ft_field_width(t_all *all);
 
 #endif

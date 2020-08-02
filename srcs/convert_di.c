@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   convert_di.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhuhtane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 12:46:22 by hhuhtane          #+#    #+#             */
-/*   Updated: 2019/11/05 13:59:23 by hhuhtane         ###   ########.fr       */
+/*   Created: 2020/07/30 18:10:53 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/08/02 13:27:18 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void		convert_di(void *param)
 {
-	t_list		*ptr_lst;
+	t_all	*all;
+	char	*arg_str;
 
-	ptr_lst = *alst;
-	*alst = new;
-	(*alst)->next = ptr_lst;
+	ft_putendl("convert di");
+	all = (t_all*)param;
+	arg_str = ft_itoa_base(all->arg_int, all->arg_base);
 }
