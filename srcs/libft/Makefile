@@ -6,7 +6,7 @@
 #    By: hhuhtane <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 11:39:33 by hhuhtane          #+#    #+#              #
-#    Updated: 2020/07/27 19:29:04 by hhuhtane         ###   ########.fr        #
+#    Updated: 2020/08/07 13:22:57 by hhuhtane         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -76,7 +76,9 @@ SRCS =	ft_putchar.c \
 		ft_abs.c \
 		get_nbr.c \
 		ft_itoa_base.c \
+		ft_uitoa_base.c \
 		ft_intlen_base.c \
+		ft_uintlen_base.c \
 		ft_strtoupper.c \
 		ft_lstappend.c
 

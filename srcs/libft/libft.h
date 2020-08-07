@@ -6,7 +6,7 @@
 /*   By: hhuhtane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 13:10:51 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/07/27 19:22:24 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/07 13:25:22 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				*ft_itoa_base(int n, int base);
+char				*ft_uitoa_base(unsigned int n, unsigned int base);
 
 char				**ft_strsplit(char const *s, char c);
 
@@ -92,6 +93,7 @@ size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t				ft_array_len(char const *s, char c);
 size_t				ft_intlen_base(int n, int base);
+size_t				ft_uintlen_base(unsigned int n, unsigned int base);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
