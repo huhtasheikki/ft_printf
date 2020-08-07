@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 21:00:34 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/02 13:04:13 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/06 19:33:59 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static int		get_flags(t_all *all)
 	{
 		if (*all->format_ptr == all->flags_str[i])
 		{
-			ft_putendl("JIM!"); //
-			all->format_info = all->format_info | (1 << (FLAGS_MASK + i));
+			ft_putnbr(i);
+			ft_putendl("FLAG IS ON >>................."); //
+			all->format_info = all->format_info | (1 << i);
 			all->format_ptr++;
 			return (1);
 		}
@@ -33,7 +34,6 @@ static int		get_flags(t_all *all)
 
 static int		get_width(t_all *all)
 {
-	ft_putendl("get_width start");
 	if (all->width)
 		return 0;
 	while (*all->format_ptr && *all->format_ptr >= '0' && *all->format_ptr <= '9')
@@ -41,7 +41,6 @@ static int		get_width(t_all *all)
 		all->width = (all->width * 10) + get_nbr(*all->format_ptr);
 		all->format_ptr++;
 	}
-	ft_putendl("5");
 	if (all->width)
 		return (1);
 	else
@@ -50,7 +49,6 @@ static int		get_width(t_all *all)
 
 static int		get_precision(t_all *all)
 {
-	ft_putendl("get_precision start");
 	if ((all->format_info & (1 << PRECISION_INDEX)))
 		return 0;
 	if (*all->format_ptr == '.')
@@ -59,8 +57,11 @@ static int		get_precision(t_all *all)
 		all->format_ptr++;
 		if (*all->format_ptr == '*')
 			return (0); // DO SOMETHING
+		if (*all->format_ptr < '0' || *all->format_ptr > '9')
+			all->precision = 0;
 		else
-		{			while (all->format_ptr && *all->format_ptr >= '0' && \
+		{
+			while (all->format_ptr && *all->format_ptr >= '0' && \
 					*all->format_ptr <= '9')  // keskes
 			{
 				all->precision = (all->precision * 10) + \
@@ -68,11 +69,9 @@ static int		get_precision(t_all *all)
 				all->format_ptr++;
 			}
 		}
-	}
-	if ((all->format_info & (1 << PRECISION_INDEX)))
 		return (1);
-	else
-		return (0);
+	}
+	return (0);
 }
 
 static int		get_l_modifier(t_all *all)
@@ -80,7 +79,6 @@ static int		get_l_modifier(t_all *all)
 	int			i;
 
 	i = 0;
-	ft_putendl("get_l_mod start");
 	if ((all->format_info & L_MOD_MASK))
 		return 0;
 	while (i < L_MOD_SIZE)
@@ -114,8 +112,6 @@ void			get_variable_info(t_all *all)
 
 	mod = 1;
 
-	ft_putchar(all->format_ptr[0]); //
-
 	if (*all->format_ptr == '%') //
 		all->format_ptr++; //
 	ft_reset_format_info(all);
@@ -123,12 +119,10 @@ void			get_variable_info(t_all *all)
 	{
 		mod = get_flags(all);
 		mod += get_width(all);
-		ft_putendl("width - precision");
 		mod += get_precision(all);
 		mod += get_l_modifier(all);
-		ft_putnbr(mod);
-		ft_putendl(" = mod");
 	}
+/* TO CHECK FORMAT_INFO
 	int		i;
 	i = 0;
 	while (i < 14)
@@ -140,5 +134,8 @@ void			get_variable_info(t_all *all)
 			ft_putendl(" FAIL!"); //
 		i++;
 	}
-	get_variable(all); // if this 0 then invalid format
+*/
+	if (!get_format_id(all))
+		return ; // change this to zero and make it error
+//	get_variable(all); // if this 0 then invalid format
 }

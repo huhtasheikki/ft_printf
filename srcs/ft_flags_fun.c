@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 18:47:20 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/02 10:06:45 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/06 19:18:19 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,20 @@ void	ft_flag_hash(void *param)
 	if ((all->format_id & CDINPSU_MASK))
 		return ;
 	if ((all->format_id & (1 << O_INDEX)))
+	{
 		all->prefix[0] = '0';
+		all->arg_len++;
+	}
 	else if ((all->format_id & (1 << X_INDEX)))
+	{
 		ft_strcat(all->prefix, "0x");
+		all->arg_len += 2;
+	}
 	else if ((all->format_id & (1 << UPX_INDEX)))
+	{
 		ft_strcat(all->prefix, "0X");
+		all->arg_len += 2;
+	}
 	else if ((all->format_id & AAEEFFGG_MASK))
 	{
 		ft_putendl("Do something");
@@ -116,15 +125,23 @@ void	ft_flag_space(void *param)
 	t_all	*all;
 
 	all = (t_all*)param;
+	if ((all->format_info & (1 << PLUS_INDEX)))
+		return ;
 	if ((all->format_id & DI_MASK))
 	{
 		if (all->arg_int >= 0)
+		{
 			ft_strcpy(all->prefix, " ");
+			all->arg_len++;
+		}
 	}
 	else if ((all->format_id & AAEEFFGG_MASK))
 	{
 		if (all->arg_double >= 0)
+		{
 			ft_strcpy(all->prefix, " ");
+			all->arg_len++;
+		}
 	}
 }
 
@@ -143,14 +160,23 @@ void	ft_flag_plus(void *param)
 
 	all = (t_all*)param;
 
+	ft_putendl("PLUSSA ENTER __!_!_!_!_!_!_!_!__!");
 	if ((all->format_id & DI_MASK))
 	{
+		ft_putendl("========================DI_MASK OK");
 		if (all->arg_int >= 0)
+		{
+			ft_putendl("------------------PLUSSA TULI");
 			ft_strcpy(all->prefix, "+");
+			all->arg_len++;
+		}
 	}
 	else if ((all->format_id & AAEEFFGG_MASK))
 	{
 		if (all->arg_double >= 0)
+		{
 			ft_strcpy(all->prefix, "+");
+			all->arg_len++;
+		}
 	}
 }
