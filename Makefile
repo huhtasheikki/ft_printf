@@ -6,7 +6,7 @@
 #    By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 18:09:10 by hhuhtane          #+#    #+#              #
-#    Updated: 2020/08/02 13:05:11 by hhuhtane         ###   ########.fr        #
+#    Updated: 2020/08/07 11:17:48 by hhuhtane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,18 @@ CFILE = ft_printf.c \
 		ft_initialize.c \
 		ft_parse.c \
 		get_variable_info.c \
+		get_format_id.c \
 		get_variable.c \
 		ft_reset.c \
 		ft_arg_convert.c \
+		ft_do_flags.c \
 		ft_flags_fun.c \
 		ft_field_width.c \
 		ft_l_modifiers.c \
 		ft_lmod_fun.c \
-		convert_di.c
+		convert_di.c \
+		ft_tools.c \
+		ft_str_to_lst.c
 
 OBJ = $(CFILE:.c=.o)
 

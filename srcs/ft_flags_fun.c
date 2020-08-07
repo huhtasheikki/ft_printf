@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 18:47:20 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/06 19:18:19 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/07 11:39:26 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,13 +160,10 @@ void	ft_flag_plus(void *param)
 
 	all = (t_all*)param;
 
-	ft_putendl("PLUSSA ENTER __!_!_!_!_!_!_!_!__!");
 	if ((all->format_id & DI_MASK))
 	{
-		ft_putendl("========================DI_MASK OK");
 		if (all->arg_int >= 0)
 		{
-			ft_putendl("------------------PLUSSA TULI");
 			ft_strcpy(all->prefix, "+");
 			all->arg_len++;
 		}

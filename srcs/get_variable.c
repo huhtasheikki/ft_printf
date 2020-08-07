@@ -6,11 +6,12 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 20:53:19 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/06 19:38:41 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/07 13:28:42 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_printf.h>
+#include <stdio.h> // delete!!!
 
 static void		get_diouxx(t_all *all)
 {
@@ -21,7 +22,9 @@ static void		get_diouxx(t_all *all)
 	}
 	else
 	{
-		all->arg_int = va_arg(all->args, unsigned int);
+		all->arg_uint = va_arg(all->args, unsigned int);
+//		all->arg_uint = (unsigned int)va_arg(all->args, unsigned int);
+//		all->arg_uint = (uintmax_t)all->arg_uint;
 		if ((all->format_id & (1 << O_INDEX)))
 			all->arg_base = 8;
 		else if ((all->format_id & (1 << U_INDEX)))
@@ -68,5 +71,9 @@ int				get_variable(t_all *all)
 	ft_l_modifiers(all);
 	ft_do_flags(all);
 	ft_arg_convert(all);
+
+	ft_variable_len(all);
+	combine_elements(all);
+	ft_full_str_to_list(all);
 	return (1); // make sure this is correct check
 }

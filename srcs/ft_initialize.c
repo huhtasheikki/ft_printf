@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 13:16:47 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/04 10:39:11 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/07 11:02:30 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	ft_init_fun_ptr(t_all *all)
 {
 	all->convert_fun_ptr[0] = &convert_di;
 	all->convert_fun_ptr[1] = &convert_di;
+	all->convert_fun_ptr[2] = &convert_di;
+	all->convert_fun_ptr[3] = &convert_di;
+	all->convert_fun_ptr[4] = &convert_di;
+	all->convert_fun_ptr[5] = &convert_di;
 	// MORE FUNTIONS
 }
 

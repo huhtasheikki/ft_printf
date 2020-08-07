@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 17:25:54 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/06 19:32:22 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/07 11:38:17 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,5 @@ void		ft_parse(t_all *all)
 			get_variable_info(all);
 			get_variable(all);
 		}
-		ft_putendl("++++++++++++++++++++++++++++");
-		ft_putendl("++++++++++++++++++++++++++++");
 	}
 }

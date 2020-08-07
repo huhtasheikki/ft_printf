@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_do_flags.c                                      :+:      :+:    :+:   */
+/*   ft_str_to_lst.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/06 16:37:32 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/07 11:38:46 by hhuhtane         ###   ########.fr       */
+/*   Created: 2020/08/07 11:15:21 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/08/07 11:31:59 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_do_flags(t_all *all)
+void		ft_full_str_to_list(t_all *all) //name this better
 {
-	int		i;
+	t_list		*txt_list;
 
-	i = 0;
-	while (i < FLAGS_SIZE)
-	{
-		if ((all->format_info & (1 << i)))
-		{
-			all->flags_fun_ptr[i](all);
-		}
-		i++;
-	}
+	txt_list = ft_lstnew(all->full_str, all->combined_len);
+	ft_lstappend(&all->parsed_args, txt_list);
 }

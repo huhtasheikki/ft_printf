@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 21:00:34 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/06 19:33:59 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/07 11:40:22 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static int		get_flags(t_all *all)
 	{
 		if (*all->format_ptr == all->flags_str[i])
 		{
-			ft_putnbr(i);
-			ft_putendl("FLAG IS ON >>................."); //
 			all->format_info = all->format_info | (1 << i);
 			all->format_ptr++;
 			return (1);

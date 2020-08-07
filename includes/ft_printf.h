@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 17:41:37 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/02 13:07:30 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/07 12:03:10 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 /* - if you add more flags, remember to change FLAGS_SIZE */
 # define FLAGS "#0- +*$'"
 # define FLAGS_SIZE 8
-# define FLAGS_MASK 0 // WHY??
+# define FLAGS_MASK 255 // 1111 1111
 # define HASH_INDEX 0
 # define ZERO_INDEX 1
 # define MINUS_INDEX 2
@@ -99,14 +99,18 @@ typedef struct		s_all
 
 	intmax_t		arg_int;
 //	int				arg_int;
-//	unsigned int	arg_uint;
+	uintmax_t		arg_uint;
 	double			arg_double;
 	size_t			arg_len;
 	int				arg_base;
+	size_t			combined_len; // DO WE NEED IT?
 
 	char			prefix[PREFIX + 1];
 	char			padding_char;
+	size_t			padding_len;
 	char			*padding_str;
+	char			*convert_str;
+	char			*full_str;
 }					t_all;
 
 /*=====================*/
@@ -123,7 +127,9 @@ void				ft_parse(t_all *all);
 void				get_variable_info(t_all *all); // change return value to int
 void				ft_reset_format_info(t_all *all);
 
-/* FLAGS */
+/* --- FLAGS --- */
+void				ft_do_flags(t_all *all);
+
 void				ft_flag_hash(void *param);
 void				ft_flag_zero(void *param);
 void				ft_flag_minus(void *param);
@@ -131,14 +137,21 @@ void				ft_flag_space(void *param);
 void				ft_flag_plus(void *param);
 /* ?????? MORE FLAGS */
 
-/* L MODIFIERS */
+/* --- L MODIFIERS --- */
 void				ft_l_modifiers(t_all *all);
+
 void				ft_h_mod(void *param);
 void				ft_hh_mod(void *param);
 void				ft_l_mod(void *param);
 void				ft_ll_mod(void *param);
 void				ft_upl_mod(void *param);
+/* END OF L MODIFIERS */
 
 int					ft_field_width(t_all *all);
+int					get_format_id(t_all *all);
+int					ft_variable_len(t_all *all);
+
+void				combine_elements(t_all *all);
+void				ft_full_str_to_list(t_all *all);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 12:44:38 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/03 15:59:07 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/07 11:37:25 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int		ft_printf(const char *format, ...)
 
 	if (!(ft_initialize(&all, format, &len)))
 		return (-1); // nolla vai miinus yksi
-	ft_putendl("ft_printf.c 1"); // TEST
 	if (*all.format_ptr) //onko oikein
 	{
 		va_start(all.args, format);
