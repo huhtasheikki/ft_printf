@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uimaxtoa_base.c                                 :+:      :+:    :+:   */
+/*   ft_uintmaxtoa_base.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 11:47:20 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/08 10:04:26 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/08 10:43:39 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_uimaxtoa_base(uintmax_t n, uintmax_t base)
+char		*ft_uintmaxtoa_base(uintmax_t n, uintmax_t base)
 {
 	size_t		n_len;
 	size_t		temp;

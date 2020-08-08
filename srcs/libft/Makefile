@@ -6,7 +6,7 @@
 #    By: hhuhtane <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 11:39:33 by hhuhtane          #+#    #+#              #
-#    Updated: 2020/08/08 10:01:48 by hhuhtane         ###   ########.fr        #
+#    Updated: 2020/08/08 10:44:44 by hhuhtane         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -80,7 +80,7 @@ SRCS =	ft_putchar.c \
 		ft_intlen_base.c \
 		ft_uintlen_base.c \
 		ft_uintmaxlen_base.c \
-		ft_uimaxtoa_base.c \
+		ft_uintmaxtoa_base.c \
 		ft_ltoa_base.c \
 		ft_longlonglen_base.c \
 		ft_strtoupper.c \
