@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 21:00:34 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/07 11:40:22 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/08 11:27:57 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,15 @@ static int		get_width(t_all *all)
 {
 	if (all->width)
 		return 0;
-	while (*all->format_ptr && *all->format_ptr >= '0' && *all->format_ptr <= '9')
+	if (*all->format_ptr && *all->format_ptr > '0' && *all->format_ptr <= '9')
 	{
 		all->width = (all->width * 10) + get_nbr(*all->format_ptr);
 		all->format_ptr++;
+		while (*all->format_ptr && *all->format_ptr >= '0' && *all->format_ptr <= '9')
+		{
+			all->width = (all->width * 10) + get_nbr(*all->format_ptr);
+			all->format_ptr++;
+		}
 	}
 	if (all->width)
 		return (1);

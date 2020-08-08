@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 18:47:20 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/07 11:39:26 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/07 17:31:07 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	ft_flag_hash(void *param)
 			the result as they would otherwise be.
 			*/		
 	}
-	ft_putendl("HASH");
 }
 
 /*==================*/

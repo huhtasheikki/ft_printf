@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 17:42:56 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/07 11:43:01 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/07 15:29:32 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int			ft_arg_convert(t_all *all)
 	int		i;
 
 	i = 0;
-
 	while (i < FORMAT_ID_SIZE)
 	{
 		if (all->format_id & (1 << i))

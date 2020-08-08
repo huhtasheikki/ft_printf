@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 13:16:47 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/07 11:02:30 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/08 11:27:24 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	ft_init_fun_ptr(t_all *all)
 {
 	all->convert_fun_ptr[0] = &convert_di;
 	all->convert_fun_ptr[1] = &convert_di;
-	all->convert_fun_ptr[2] = &convert_di;
-	all->convert_fun_ptr[3] = &convert_di;
-	all->convert_fun_ptr[4] = &convert_di;
-	all->convert_fun_ptr[5] = &convert_di;
+	all->convert_fun_ptr[2] = &convert_ouxx;
+	all->convert_fun_ptr[3] = &convert_ouxx;
+	all->convert_fun_ptr[4] = &convert_ouxx;
+	all->convert_fun_ptr[5] = &convert_ouxx;
 	// MORE FUNTIONS
 }
 
@@ -48,7 +48,7 @@ int		ft_initialize(t_all *all, const char *format, size_t *len)
 	all->len = len;
 	*all->len = 0;
 	all->parsed_args = ft_lstnew(NULL, 0);
-	ft_reset_format_info(all);
+//	ft_reset_format_info(all);
 	ft_strncpy(all->flags_str, FLAGS, FLAGS_SIZE + 1);
 	ft_strncpy(all->l_modifier_str, L_MODIFIER, L_MOD_SIZE + 1);
 	ft_strncpy(all->format_id_str, FORMAT_ID, FORMAT_ID_SIZE + 1);
