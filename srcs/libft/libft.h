@@ -6,7 +6,7 @@
 /*   By: hhuhtane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 13:10:51 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/08 10:45:35 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/08 17:03:38 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char				*ft_itoa_base(int n, int base);
 char				*ft_uitoa_base(unsigned int n, unsigned int base);
 char				*ft_uintmaxtoa_base(uintmax_t n, uintmax_t base);
 char				*ft_ltoa_base(long long n, int base);
+char				*ft_ftoa(long double f, int prec);
 
 char				**ft_strsplit(char const *s, char c);
 
@@ -99,6 +100,8 @@ size_t				ft_intlen_base(int n, int base);
 size_t				ft_uintlen_base(unsigned int n, unsigned int base);
 size_t				ft_uintmaxlen_base(uintmax_t n, uintmax_t base);
 size_t				ft_longlonglen_base(long long n, int base);
+
+double				ft_pow(double x, double y);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));

@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 20:53:19 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/08 11:25:05 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/08 17:11:36 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,11 @@ static void		get_ouxx(t_all *all)
 
 void			get_double(t_all *all) // THIS FUNCTION TO GET DOUBLE
 {
-	all->arg_double = va_arg(all->args, double);
+	if ((all->format_info & (1 << UP_L_INDEX)))
+		all->arg_double = va_arg(all->args, long double);
+	else
+		all->arg_double = va_arg(all->args, double);
+//	all->convert_str = ft_ftoa(all->arg_double, all->precision);
 }
 
 static int		ft_collect_var(t_all *all)

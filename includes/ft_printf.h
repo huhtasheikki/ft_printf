@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 17:41:37 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/07 12:03:10 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/08 17:05:13 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct		s_all
 
 	int				format_info;
 	size_t			width;
-	int				precision;
+	size_t			precision;
 	int				flags;
 //	char			format_id;
 	int				format_id;
@@ -100,7 +100,7 @@ typedef struct		s_all
 	intmax_t		arg_int;
 //	int				arg_int;
 	uintmax_t		arg_uint;
-	double			arg_double;
+	long double		arg_double;
 	size_t			arg_len;
 	int				arg_base;
 	size_t			combined_len; // DO WE NEED IT?
@@ -122,6 +122,7 @@ int					get_variable(t_all *all);
 int					ft_arg_convert(t_all *all);
 
 void				convert_di(void *param);
+void				convert_ouxx(void *param);
 
 void				ft_parse(t_all *all);
 void				get_variable_info(t_all *all); // change return value to int
@@ -153,5 +154,6 @@ int					ft_variable_len(t_all *all);
 
 void				combine_elements(t_all *all);
 void				ft_full_str_to_list(t_all *all);
+void				ft_precision(t_all *all);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 18:09:10 by hhuhtane          #+#    #+#              #
-#    Updated: 2020/08/07 11:17:48 by hhuhtane         ###   ########.fr        #
+#    Updated: 2020/08/08 10:41:41 by hhuhtane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ CFILE = ft_printf.c \
 		ft_lmod_fun.c \
 		convert_di.c \
 		ft_tools.c \
-		ft_str_to_lst.c
+		ft_str_to_lst.c \
+		ft_precision.c
 
 OBJ = $(CFILE:.c=.o)
 
