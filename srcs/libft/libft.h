@@ -6,7 +6,7 @@
 /*   By: hhuhtane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 13:10:51 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/08 17:03:38 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/10 12:30:21 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,12 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				*ft_itoa_base(int n, int base);
+char				*ft_itoa_base_prefix(int n, int base, char *prefix);
 char				*ft_uitoa_base(unsigned int n, unsigned int base);
 char				*ft_uintmaxtoa_base(uintmax_t n, uintmax_t base);
 char				*ft_ltoa_base(long long n, int base);
-char				*ft_ftoa(long double f, int prec);
+char				*ft_ltoa_base_prefix(long long n, int base, char *prefix);
+char				*ft_ftoa(long double f, size_t prec);
 
 char				**ft_strsplit(char const *s, char c);
 
