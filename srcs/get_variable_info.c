@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 21:00:34 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/08 11:27:57 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/10 12:08:16 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,19 @@ static int		get_width(t_all *all)
 	{
 		all->width = (all->width * 10) + get_nbr(*all->format_ptr);
 		all->format_ptr++;
-		while (*all->format_ptr && *all->format_ptr >= '0' && *all->format_ptr <= '9')
+		while (*all->format_ptr && \
+				((*all->format_ptr >= '0' && *all->format_ptr <= '9') || \
+				*all->format_ptr == '*'))
 		{
 			all->width = (all->width * 10) + get_nbr(*all->format_ptr);
 			all->format_ptr++;
 		}
+	}
+	if (*all->format_ptr == '*')
+	{
+		all->width = ft_get_asterisk(all->args);
+		all->format_ptr++;
+		return (1);
 	}
 	if (all->width)
 		return (1);
@@ -58,15 +66,20 @@ static int		get_precision(t_all *all)
 	{
 		all->format_info = all->format_info | (1 << PRECISION_INDEX);
 		all->format_ptr++;
-		if (*all->format_ptr == '*')
-			return (0); // DO SOMETHING
-		if (*all->format_ptr < '0' || *all->format_ptr > '9')
+		if ((*all->format_ptr < '0' || *all->format_ptr > '9') && \
+			*all->format_ptr != '*')
 			all->precision = 0;
 		else
 		{
-			while (all->format_ptr && *all->format_ptr >= '0' && \
-					*all->format_ptr <= '9')  // keskes
+			while (all->format_ptr && ((*all->format_ptr >= '0' && \
+					*all->format_ptr <= '9') || *all->format_ptr == '*'))
 			{
+				if (*all->format_ptr == '*')
+				{
+					all->precision = ft_get_asterisk(all->args);
+					all->format_ptr++;
+					return (1);
+				}
 				all->precision = (all->precision * 10) + \
 					get_nbr(*all->format_ptr);
 				all->format_ptr++;
@@ -118,7 +131,8 @@ void			get_variable_info(t_all *all)
 	if (*all->format_ptr == '%') //
 		all->format_ptr++; //
 	ft_reset_format_info(all);
-	while (mod && all->format_ptr && !(all->format_id & (FORMAT_MASK)))
+	while (mod && all->format_ptr)
+// && !(all->format_id & (FORMAT_MASK)))
 	{
 		mod = get_flags(all);
 		mod += get_width(all);

@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arg_convert.c                                   :+:      :+:    :+:   */
+/*   ft_ptr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/30 17:42:56 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/09 14:46:09 by hhuhtane         ###   ########.fr       */
+/*   Created: 2020/08/10 09:14:21 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/08/10 10:06:59 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_arg_convert(t_all *all)
+void		convert_ptr(void *param)
 {
-	int		i;
+	t_all			*all;
 
-	i = 0;
-	while (i < FORMAT_ID_SIZE)
-	{
-		if (all->format_id & (1 << i))
-		{
-			all->convert_fun_ptr[i](all);
-			return (1);
-		}
-		i++;
-	}
-	return (0); // tsek
+	all = (t_all*)param;
+	all->convert_str = ft_uintmaxtoa_base((unsigned long)all->arg_ptr, 16);
+	ft_strcpy(all->prefix, "0x");
+	all->arg_len = ft_strlen(all->convert_str);
+}
+
+void		get_ptr(t_all *all)
+{
+	all->arg_ptr = va_arg(all->args, void*);
 }

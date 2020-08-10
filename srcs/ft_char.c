@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arg_convert.c                                   :+:      :+:    :+:   */
+/*   ft_char.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/30 17:42:56 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/09 14:46:09 by hhuhtane         ###   ########.fr       */
+/*   Created: 2020/08/09 12:23:17 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/08/09 14:45:43 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_arg_convert(t_all *all)
+void		convert_char(void *param)
 {
-	int		i;
+	t_all	*all;
 
-	i = 0;
-	while (i < FORMAT_ID_SIZE)
-	{
-		if (all->format_id & (1 << i))
-		{
-			all->convert_fun_ptr[i](all);
-			return (1);
-		}
-		i++;
-	}
-	return (0); // tsek
+	all = (t_all*)param;
+}
+
+void		get_char(t_all *all)
+{
+	all->arg_int = va_arg(all->args, int);
+	all->convert_str = ft_strnew(2);
+	all->convert_str[0] = all->arg_int;
+	all->convert_str[1] = '\0';
+	all->arg_len = 1;
 }

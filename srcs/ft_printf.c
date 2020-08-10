@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 12:44:38 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/08 12:34:06 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/09 11:57:02 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,5 @@ int				ft_printf(const char *format, ...)
 		va_end(all.args);
 	}
 	ft_write_lst(all.parsed_args, &len);
-//	ft_putstr(all.ready_print);
-//	len = ft_strlen(all.ready_print);
-//	ft_del_all(&all);
 	return (len);
-//	return (ft_strlen(all.ready_print));
 }

@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 20:53:19 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/08 17:11:36 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/10 09:18:54 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,24 @@ static int		ft_collect_var(t_all *all)
 		get_di(all);
 
 /* Get if format is OUXX */
-	if ((all->format_id & OUXX_MASK))
+	else if ((all->format_id & OUXX_MASK))
 		get_ouxx(all);
 
 /* DOUBLE could be its own function */
-	if ((all->format_id & AAEEFFGG_MASK))
+	else if ((all->format_id & AAEEFFGG_MASK))
 		get_double(all);
 
+	else if ((all->format_id & (1 << PERCENT_INDEX)))
+		get_percent(all);
+
+	else if ((all->format_id & (3 << UPC_INDEX)))
+		get_char(all);
+
+	else if ((all->format_id & (1 << S_INDEX)))
+		get_str(all);
+
+	else if ((all->format_id & (1 << P_INDEX)))
+		get_ptr(all);
 	//JNE
 /*
 	if (ft_strchr(FORMAT_ID, *all->format_ptr))

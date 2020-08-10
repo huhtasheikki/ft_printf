@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 18:47:20 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/07 17:31:07 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/10 10:06:17 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	ft_flag_hash(void *param)
 	}
 	else if ((all->format_id & (1 << X_INDEX)))
 	{
-		ft_strcat(all->prefix, "0x");
+		ft_strcpy(all->prefix, "0x");
 		all->arg_len += 2;
 	}
 	else if ((all->format_id & (1 << UPX_INDEX)))
 	{
-		ft_strcat(all->prefix, "0X");
+		ft_strcpy(all->prefix, "0X");
 		all->arg_len += 2;
 	}
 	else if ((all->format_id & AAEEFFGG_MASK))

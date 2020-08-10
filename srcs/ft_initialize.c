@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 13:16:47 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/08 11:27:24 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/10 10:02:28 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,17 @@ void	ft_init_fun_ptr(t_all *all)
 	all->convert_fun_ptr[3] = &convert_ouxx;
 	all->convert_fun_ptr[4] = &convert_ouxx;
 	all->convert_fun_ptr[5] = &convert_ouxx;
+	all->convert_fun_ptr[E_INDEX] = &convert_double;
+	all->convert_fun_ptr[UPE_INDEX] = &convert_double;
+	all->convert_fun_ptr[F_INDEX] = &convert_double;
+	all->convert_fun_ptr[UPF_INDEX] = &convert_double;
+	all->convert_fun_ptr[G_INDEX] = &convert_double;
+	all->convert_fun_ptr[UPG_INDEX] = &convert_double;
+	all->convert_fun_ptr[S_INDEX] = &convert_str;
+	all->convert_fun_ptr[P_INDEX] = &convert_ptr;
+
+	all->convert_fun_ptr[C_INDEX] = &convert_char;
+	all->convert_fun_ptr[PERCENT_INDEX] = &convert_percent;
 	// MORE FUNTIONS
 }
 

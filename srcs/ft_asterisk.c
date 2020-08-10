@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arg_convert.c                                   :+:      :+:    :+:   */
+/*   ft_asterisk.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/30 17:42:56 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/09 14:46:09 by hhuhtane         ###   ########.fr       */
+/*   Created: 2020/08/10 11:12:45 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/08/10 11:17:47 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_arg_convert(t_all *all)
+size_t		ft_get_asterisk(va_list args)
 {
-	int		i;
+	size_t		arg_asterisk;
 
-	i = 0;
-	while (i < FORMAT_ID_SIZE)
-	{
-		if (all->format_id & (1 << i))
-		{
-			all->convert_fun_ptr[i](all);
-			return (1);
-		}
-		i++;
-	}
-	return (0); // tsek
+	arg_asterisk = va_arg(args, int);
+	return (arg_asterisk);
 }
