@@ -6,11 +6,10 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 13:16:47 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/10 10:02:28 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/11 10:54:03 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf.h"
 
 void	ft_init_flags_ptr(t_all *all)
@@ -59,7 +58,7 @@ int		ft_initialize(t_all *all, const char *format, size_t *len)
 	all->len = len;
 	*all->len = 0;
 	all->parsed_args = ft_lstnew(NULL, 0);
-//	ft_reset_format_info(all);
+	all->last_arg = all->parsed_args;
 	ft_strncpy(all->flags_str, FLAGS, FLAGS_SIZE + 1);
 	ft_strncpy(all->l_modifier_str, L_MODIFIER, L_MOD_SIZE + 1);
 	ft_strncpy(all->format_id_str, FORMAT_ID, FORMAT_ID_SIZE + 1);

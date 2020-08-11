@@ -6,13 +6,13 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 17:25:54 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/10 11:53:23 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/11 11:24:34 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		get_plain_txt(t_all *all)
+static int		get_plain_txt(t_all *all)
 {
 	intmax_t	len;
 	char		*end_ptr;
@@ -23,37 +23,26 @@ static void		get_plain_txt(t_all *all)
 		len = ft_strlen(all->format_ptr);
 	else
 		len = end_ptr - all->format_ptr;
-	txt_list = ft_lstnew(all->format_ptr, len);
-	if (all->parsed_args)
-	{
-		ft_lstappend(&all->parsed_args, txt_list);
-		//use somehow all->last_arg ?
-	}
-// turha if-else?
-/*
-	else
-	{
-		ft_putendl("parse 2");
-		all->parsed_args = txt_list;
-		ft_putendl("parse 2 loppu");
-	}
-*/
+	if(!(txt_list = ft_lstnew(all->format_ptr, len)))
+		return (0);
+	ft_lstappend(&all->last_arg, txt_list);
+	all->last_arg = all->last_arg->next;
 	all->len += len;
 	all->format_ptr += len;
+	return (1);
 }
 
 /* FT_PARSE goes through the format str and collects everything to a
 linked list. */
 
-void		ft_parse(t_all *all)
+int				ft_parse(t_all *all)
 {
 	while (all->format_ptr && *all->format_ptr)
 	{
-		get_plain_txt(all);
-		if (all->format_ptr && *all->format_ptr)
-		{
-			get_variable_info(all);
-			get_variable(all);
-		}
+		if (!get_plain_txt(all))
+			return (0);
+		if (!get_variable(all))
+			return (0);
 	}
+	return (1);
 }

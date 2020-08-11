@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 20:53:19 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/10 09:18:54 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/11 11:34:15 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,16 @@ static int		ft_collect_var(t_all *all)
 
 int				get_variable(t_all *all)
 {
-//	if (!get_format_id(all))
-//		return (0);
+	if (*all->format_ptr != '%')
+		return (1);
+	if (!get_variable_info(all))
+		return (0);
 	ft_collect_var(all);
-//	ft_l_modifiers(all); // don't need anymore, remove from Makefile as well
 	ft_do_flags(all);
 	ft_arg_convert(all);
 	ft_precision(all);
 	ft_variable_len(all);
-//	ft_precision(all);
+	ft_create_padding_str(all);
 	combine_elements(all);
 	ft_full_str_to_list(all);
 	free(all->padding_str);

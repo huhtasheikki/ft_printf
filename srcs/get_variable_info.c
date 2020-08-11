@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 21:00:34 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/10 12:08:16 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/11 11:54:07 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int		get_flags(t_all *all)
 	int		i;
 
 	i = 0;
+	if (!(*all->format_ptr))
+		return (0);
 	while (i < FLAGS_SIZE)
 	{
 		if (*all->format_ptr == all->flags_str[i])
@@ -32,15 +34,11 @@ static int		get_flags(t_all *all)
 
 static int		get_width(t_all *all)
 {
-	if (all->width)
+	if (all->width || !(*all->format_ptr))
 		return 0;
-	if (*all->format_ptr && *all->format_ptr > '0' && *all->format_ptr <= '9')
+	if (*all->format_ptr > '0' && *all->format_ptr <= '9')
 	{
-		all->width = (all->width * 10) + get_nbr(*all->format_ptr);
-		all->format_ptr++;
-		while (*all->format_ptr && \
-				((*all->format_ptr >= '0' && *all->format_ptr <= '9') || \
-				*all->format_ptr == '*'))
+		while (*all->format_ptr >= '0' && *all->format_ptr <= '9')
 		{
 			all->width = (all->width * 10) + get_nbr(*all->format_ptr);
 			all->format_ptr++;
@@ -48,8 +46,7 @@ static int		get_width(t_all *all)
 	}
 	if (*all->format_ptr == '*')
 	{
-		all->width = ft_get_asterisk(all->args);
-		all->format_ptr++;
+		all->width = ft_width_asterisk(all);
 		return (1);
 	}
 	if (all->width)
@@ -76,8 +73,7 @@ static int		get_precision(t_all *all)
 			{
 				if (*all->format_ptr == '*')
 				{
-					all->precision = ft_get_asterisk(all->args);
-					all->format_ptr++;
+					all->precision = ft_precision_asterisk(all);
 					return (1);
 				}
 				all->precision = (all->precision * 10) + \
@@ -122,22 +118,18 @@ static int		get_l_modifier(t_all *all)
 	return (0);
 }
 
-void			get_variable_info(t_all *all)
+int				get_variable_info(t_all *all)
 {
 	int		mod;
 
 	mod = 1;
-
-	if (*all->format_ptr == '%') //
-		all->format_ptr++; //
+	all->format_ptr++;
 	ft_reset_format_info(all);
-	while (mod && all->format_ptr)
-// && !(all->format_id & (FORMAT_MASK)))
+	while (mod)
 	{
 		mod = get_flags(all);
 		mod += get_width(all);
 		mod += get_precision(all);
-		mod += get_l_modifier(all);
 	}
 /* TO CHECK FORMAT_INFO
 	int		i;
@@ -152,7 +144,9 @@ void			get_variable_info(t_all *all)
 		i++;
 	}
 */
+	get_l_modifier(all);
 	if (!get_format_id(all))
-		return ; // change this to zero and make it error
+		return (0); // change this to zero and make it error
 //	get_variable(all); // if this 0 then invalid format
+	return (1);
 }
