@@ -6,7 +6,7 @@
 #    By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 18:09:10 by hhuhtane          #+#    #+#              #
-#    Updated: 2020/08/08 10:41:41 by hhuhtane         ###   ########.fr        #
+#    Updated: 2020/08/14 14:47:14 by hhuhtane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,14 @@ CFILE = ft_printf.c \
 		convert_di.c \
 		ft_tools.c \
 		ft_str_to_lst.c \
-		ft_precision.c
+		ft_precision.c \
+		ft_percent.c \
+		ft_char.c \
+		ft_str.c \
+		ft_ptr.c \
+		ft_asterisk.c \
+		ft_padding.c \
+		ft_ftoa_bit.c
 
 OBJ = $(CFILE:.c=.o)
 
@@ -73,5 +80,13 @@ norm:
 		@echo "Norminette $(COLOR_TITLE)$(LIBFT_DIR)$(COLOR_RESET)"
 		norminette $(LIBFT_DIR)
 
-fclean:
-	rm $(NAME)
+clean:
+		@make clean -C $(LIBFT_DIR)
+		@echo "REVOVE $(COLOR_TITLE)$(OBJ)$(COLOR_RESET)"
+		@rm -f $(OBJ)
+
+fclean: clean
+	@make fclean -C $(LIBFT_DIR)
+	@rm -f $(NAME)
+
+re: fclean all

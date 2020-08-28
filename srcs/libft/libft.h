@@ -6,13 +6,14 @@
 /*   By: hhuhtane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 13:10:51 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/10 12:30:21 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/26 17:01:16 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "libft_shorthand.h"
 # include <string.h>
 # include <unistd.h>
 # include <stdint.h>
@@ -104,6 +105,8 @@ size_t				ft_uintmaxlen_base(uintmax_t n, uintmax_t base);
 size_t				ft_longlonglen_base(long long n, int base);
 
 double				ft_pow(double x, double y);
+int					ft_log10(long double f);
+unsigned long long	ft_logbase2(unsigned long long val);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
@@ -112,5 +115,11 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstappend(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+
+/*
+** VARIABLE LENGTH QUATITY FUNCTIONS
+*/
+t_u64				*ft_vlqnew(t_u32 size);
+char				*ft_bignumtoa(long double f);
 
 #endif

@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arg_convert.c                                   :+:      :+:    :+:   */
+/*   ft_vlqnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/30 17:42:56 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/11 15:13:59 by hhuhtane         ###   ########.fr       */
+/*   Created: 2020/08/26 11:36:49 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/08/26 14:32:02 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int			ft_arg_convert(t_all *all)
+t_u64		*ft_vlqnew(t_u32 size)
 {
-	int		i;
+	t_u64	*new;
 
-	i = 0;
-	while (i < FORMAT_ID_SIZE)
-	{
-		if (all->format_id & (1 << i))
-		{
-			all->convert_fun_ptr[i](all);
-			return (1);
-		}
-		i++;
-	}
-	return (0);
+	if (size == 0)
+		return (NULL);
+	if (!(new = (t_u64*)malloc(sizeof(t_u64) * size)))
+		return (NULL);
+	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/02 12:43:51 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/07 17:44:25 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/17 14:27:02 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ void		ft_l_mod(void *param)
 	t_all		*all;
 
 	all = (t_all*)param;
-	if ((all->format_id & DI_MASK))
-		all->arg_int = (long)all->arg_int;
-	else if ((all->format_id & OUXX_MASK))
-		all->arg_int = (unsigned long)all->arg_uint;
-	else if ((all->format_id & (1 << N_INDEX))) // NOT NEEDED
-		all->arg_int = all->arg_int; //
+//	if ((all->format_id & DI_MASK))
+//		all->arg_int = (long)all->arg_int;
+//	else if ((all->format_id & OUXX_MASK))
+//		all->arg_int = (unsigned long)all->arg_uint;
+//	else if ((all->format_id & (1 << N_INDEX))) // NOT NEEDED
+//		all->arg_int = all->arg_int; //
 }
 
 void		ft_ll_mod(void *param)

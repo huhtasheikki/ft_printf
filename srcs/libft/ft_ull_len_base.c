@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arg_convert.c                                   :+:      :+:    :+:   */
+/*   ft_ull_len_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/30 17:42:56 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/11 15:13:59 by hhuhtane         ###   ########.fr       */
+/*   Created: 2020/08/25 17:24:36 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/08/25 17:26:11 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int			ft_arg_convert(t_all *all)
+size_t		ft_ull_len_base(unsigned long long n, int base)
 {
-	int		i;
+	size_t		len;
 
-	i = 0;
-	while (i < FORMAT_ID_SIZE)
+	len = 1;
+	while (n >= base)
 	{
-		if (all->format_id & (1 << i))
-		{
-			all->convert_fun_ptr[i](all);
-			return (1);
-		}
-		i++;
+		n /= base;
+		len++;
 	}
-	return (0);
+	return (len);
 }

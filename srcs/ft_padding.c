@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arg_convert.c                                   :+:      :+:    :+:   */
+/*   ft_padding.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/30 17:42:56 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/11 15:13:59 by hhuhtane         ###   ########.fr       */
+/*   Created: 2020/08/10 15:28:30 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/08/10 15:32:50 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_arg_convert(t_all *all)
+int		ft_create_padding_str(t_all *all)
 {
-	int		i;
-
-	i = 0;
-	while (i < FORMAT_ID_SIZE)
+	if (all->padding_len)
 	{
-		if (all->format_id & (1 << i))
-		{
-			all->convert_fun_ptr[i](all);
-			return (1);
-		}
-		i++;
+		free(all->padding_str);
+		if (!(all->padding_str = ft_strnew(all->padding_len + 1)))
+			return (0);
+		ft_memset(all->padding_str, all->padding_char, all->padding_len);
 	}
-	return (0);
+	return (1);
 }

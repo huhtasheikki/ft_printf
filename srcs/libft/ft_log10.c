@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arg_convert.c                                   :+:      :+:    :+:   */
+/*   ft_log10.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/30 17:42:56 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/11 15:13:59 by hhuhtane         ###   ########.fr       */
+/*   Created: 2020/08/25 18:00:06 by hhuhtane          #+#    #+#             */
+/*   Updated: 2020/08/25 18:04:32 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int			ft_arg_convert(t_all *all)
+int		ft_log10(long double f)
 {
-	int		i;
+	int		log;
 
-	i = 0;
-	while (i < FORMAT_ID_SIZE)
+	log = 0;
+	while (f >= 1)
 	{
-		if (all->format_id & (1 << i))
-		{
-			all->convert_fun_ptr[i](all);
-			return (1);
-		}
-		i++;
+		f /= 10;
+		log++;
 	}
-	return (0);
+	return (log);
 }

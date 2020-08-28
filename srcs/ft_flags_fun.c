@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 18:47:20 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/11 15:10:13 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/25 16:36:50 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,25 @@ void	ft_flag_hash(void *param)
 	all = (t_all*)param;
 	if ((all->format_id & CDINPSU_MASK))
 		return ;
-	if ((all->format_id & (1 << O_INDEX)) && all->arg_uint != 0)
+	if (((all->format_id >> O_INDEX) & 1) && all->arg_uint != 0)
 	{
 		all->prefix[0] = '0';
 		all->prefix_len = 1;
 	}
-	else if ((all->format_id & (1 << X_INDEX)) && all->arg_uint != 0)
+	else if (((all->format_id >> X_INDEX) & 1) && all->arg_uint != 0)
 	{
 		ft_strcpy(all->prefix, "0x");
 		all->prefix_len = 2;
 	}
-	else if ((all->format_id & (1 << UPX_INDEX)) && all->arg_uint != 0)
+	else if (((all->format_id >> UPX_INDEX) & 1) && all->arg_uint != 0)
 	{
 		ft_strcpy(all->prefix, "0X");
 		all->prefix_len = 2;
 	}
 	else if ((all->format_id & AAEEFFGG_MASK))
 	{
-		(void)all;
+		if ((all->format_info >> PRECISION_INDEX & 1) && all->precision == 0)
+			all->precision = 1;
 	}
 }
 
