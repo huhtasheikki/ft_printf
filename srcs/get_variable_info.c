@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 21:00:34 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/25 14:27:18 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/09/17 10:14:27 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,28 @@ static int		get_flags(t_all *all)
 
 static int		get_width(t_all *all)
 {
-	if (all->width || !(*all->format_ptr))
+	if (!(*all->format_ptr))
 		return (0);
 	if (*all->format_ptr > '0' && *all->format_ptr <= '9')
 	{
+		all->width = 0;
 		while (ft_isdigit(*all->format_ptr))
 		{
 			all->width = (all->width * 10) + get_nbr(*all->format_ptr);
 			all->format_ptr++;
 		}
+		return (1);
 	}
 	if (*all->format_ptr == '*')
 	{
 		all->width = ft_width_asterisk(all);
 		return (1);
 	}
-	if (all->width)
-		return (1);
 	return (0);
 }
 
 static int		get_precision(t_all *all)
 {
-//	if ((all->format_info & (1 << PRECISION_INDEX)) || \
-//		*all->format_ptr != '.')
 	if (*all->format_ptr != '.')
 		return (0);
 	all->format_info = all->format_info | (1 << PRECISION_INDEX);
@@ -79,11 +77,6 @@ static int		get_precision(t_all *all)
 
 static int		get_l_modifier(t_all *all)
 {
-	int			i;
-
-	i = 0;
-	if ((all->format_info & L_MOD_MASK) || !(*all->format_ptr))
-		return (0);
 	if (ft_strchr("hl", *all->format_ptr) && \
 		all->format_ptr[0] == all->format_ptr[1])
 	{
@@ -110,37 +103,10 @@ static int		get_l_modifier(t_all *all)
 
 int				get_variable_info(t_all *all)
 {
-	int		mod;
-
-//	mod = 1;
 	all->format_ptr++;
 	ft_reset_format_info(all);
-	while (get_flags(all) || get_width(all) || get_precision(all));
+	while (get_flags(all) || get_width(all) || get_precision(all))
+		continue;
 	get_l_modifier(all);
-	mod = get_format_id(all);
-//	while (*all->format_ptr != '\0' && !(mod = get_format_id(all)))
-//		all->format_ptr++;
-	return (mod);
-/*
-	while (mod)
-	{
-		if (!get_flags(all) && !get_width(all) && !get_precision(all))
-		{
-//			mod = 0;
-			get_l_modifier(all);
-			if (!get_format_id(all))
-				all->format_ptr++;
-			else
-				return(1);
-//				return (0);
-		}
-//		mod = get_flags(all);
-//		mod += get_width(all);
-//		mod += get_precision(all);
-	}
-	get_l_modifier(all);
-	if (!get_format_id(all))
-		return (0);
-	return (1);
-*/
+	return (get_format_id(all));
 }

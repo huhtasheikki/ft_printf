@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 12:44:38 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/11 11:36:40 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/09/17 10:21:39 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void		ft_write_lst(t_list *lst, size_t *len)
 	while (lst)
 	{
 		*len += write(1, lst->content, lst->content_size);
-//		*len += lst->content_size;
 		lst = lst->next;
 	}
 	ft_lstdel(&ptr, &lst_delete);
