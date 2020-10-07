@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 20:53:19 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/10/07 11:18:04 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/07 14:07:05 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int				get_variable(t_all *all)
 		return (1);
 	ft_collect_var(all);
 	ft_do_flags(all);
-	ft_arg_convert(all); // tarkistus menossa
+	ft_arg_convert(all);
 	ft_precision(all);
 	ft_variable_len(all);
 	ft_create_padding_str(all);

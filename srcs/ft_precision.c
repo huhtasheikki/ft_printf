@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/07 16:43:54 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/10/07 10:18:44 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/07 13:51:20 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void			ft_precision(t_all *all)
 		all->convert_str = ft_strnew(0);
 		all->arg_len = 0;
 	}
-	if (all->precision > all->arg_len)
+	else if (all->precision > all->arg_len)
 		ft_precision_helper(all);
 }

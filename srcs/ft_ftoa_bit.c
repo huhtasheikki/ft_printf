@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/08 15:16:55 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/10/07 11:09:11 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/07 12:30:56 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,7 @@ char					*ft_lftoa_bit(long double f, size_t prec, char *sign)
 		f = -f;
 	if (prec < 19)
 		f = round_float(f, prec);
-	if (f <= ULONG_MAX)
-		digits_str = ft_uintmaxtoa_base((uintmax_t)f, 10);
-	else
-		digits_str = ft_strdup(">ULONG_MAX");
+	digits_str = ft_uintmaxtoa_base((uintmax_t)f, 10);
 	if (!(decimals_str = dot_float_str(f, prec)))
 		decimals_str = ft_strnew(0);
 	res = ft_strjoin(digits_str, decimals_str);

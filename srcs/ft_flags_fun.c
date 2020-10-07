@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 18:47:20 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/09/17 17:18:01 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/07 14:06:23 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_flag_hash(void *param)
 		((all->format_info & (1 << PRECISION_INDEX)) && \
 		all->precision == 0 && all->arg_uint == 0)))
 	{
-		all->prefix[0] = '0';
+		ft_strcpy(all->prefix, "0");
 		all->prefix_len = 1;
 	}
 	else if (((all->format_id >> X_INDEX) & 1) && all->arg_uint != 0)
