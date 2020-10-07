@@ -6,7 +6,7 @@
 #    By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 18:09:10 by hhuhtane          #+#    #+#              #
-#    Updated: 2020/08/14 14:47:14 by hhuhtane         ###   ########.fr        #
+#    Updated: 2020/10/07 11:28:59 by hhuhtane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,6 @@ CFILE = ft_printf.c \
 		ft_do_flags.c \
 		ft_flags_fun.c \
 		ft_field_width.c \
-		ft_l_modifiers.c \
-		ft_lmod_fun.c \
 		convert_di.c \
 		ft_tools.c \
 		ft_str_to_lst.c \
