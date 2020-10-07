@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 21:00:34 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/09/17 10:14:27 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/09/17 12:31:20 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,9 @@ static int		get_precision(t_all *all)
 		return (0);
 	all->format_info = all->format_info | (1 << PRECISION_INDEX);
 	all->format_ptr++;
+	all->precision = 0;
 	if (!ft_isdigit(*all->format_ptr) && *all->format_ptr != '*')
-	{
-		all->precision = 0;
 		return (1);
-	}
 	while (ft_isdigit(*all->format_ptr))
 	{
 		all->precision = (all->precision * 10) + get_nbr(*all->format_ptr);

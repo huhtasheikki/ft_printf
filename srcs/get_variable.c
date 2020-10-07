@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 20:53:19 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/17 15:13:02 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/07 11:18:04 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,5 @@ int				get_variable(t_all *all)
 	free(all->padding_str);
 	free(all->convert_str);
 	free(all->full_str);
-	return (1); // make sure this is correct check
+	return (1);
 }

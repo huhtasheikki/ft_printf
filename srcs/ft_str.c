@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 14:47:54 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/09 16:10:29 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/07 11:15:07 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void		convert_str(void *param)
 	t_all		*all;
 
 	all = (t_all*)param;
-
 	if (!all->arg_str)
 	{
 		all->convert_str = ft_strdup("(null)");
@@ -40,11 +39,4 @@ void		convert_str(void *param)
 void		get_str(t_all *all)
 {
 	all->arg_str = va_arg(all->args, char*);
-/*
-	if (all->arg_str)
-		all->convert_str = ft_strdup(all->arg_str);
-	else
-		all->convert_str = ft_strnew(0);
-	all->arg_len = ft_strlen(all->convert_str);
-*/
 }

@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 18:47:20 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/25 16:36:50 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/09/17 17:18:01 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 **********************
 ** '#' (hash) -FLAG **
-**********************
+****************************************************************
 **
 ** The value should be converted to an ``alternate form''.
 ** For c, d, i, n, p, s, and u conversions, this option has
@@ -31,7 +31,7 @@
 ** are not removed from the result as they would otherwise
 ** be.
 **
-**********************
+****************************************************************
 */
 
 void	ft_flag_hash(void *param)
@@ -41,7 +41,10 @@ void	ft_flag_hash(void *param)
 	all = (t_all*)param;
 	if ((all->format_id & CDINPSU_MASK))
 		return ;
-	if (((all->format_id >> O_INDEX) & 1) && all->arg_uint != 0)
+	if (((all->format_id >> O_INDEX) & 1) && \
+		(all->arg_uint != 0 || \
+		((all->format_info & (1 << PRECISION_INDEX)) && \
+		all->precision == 0 && all->arg_uint == 0)))
 	{
 		all->prefix[0] = '0';
 		all->prefix_len = 1;
@@ -56,24 +59,19 @@ void	ft_flag_hash(void *param)
 		ft_strcpy(all->prefix, "0X");
 		all->prefix_len = 2;
 	}
-	else if ((all->format_id & AAEEFFGG_MASK))
-	{
-		if ((all->format_info >> PRECISION_INDEX & 1) && all->precision == 0)
-			all->precision = 1;
-	}
 }
 
 /*
 **********************
 ** '0' (zero) -FLAG **
-**********************
+****************************************************************
 **
 ** Zero padding.  For all conversions except n, the converted
 ** value is padded on the left with zeros rather than blanks.
 ** If a precision is given with a numeric conversion (d, i,
 ** o, u, i, x, and X), the 0 flag is ignored.
 **
-**********************
+****************************************************************
 */
 
 void	ft_flag_zero(void *param)
@@ -181,7 +179,7 @@ void	ft_flag_plus(void *param)
 		if (all->arg_int >= 0)
 		{
 			ft_strcpy(all->prefix, "+");
-			all->arg_len++;
+			all->arg_len = 1;
 		}
 	}
 	else if ((all->format_id & AAEEFFGG_MASK))
@@ -189,7 +187,7 @@ void	ft_flag_plus(void *param)
 		if (all->arg_double >= 0)
 		{
 			ft_strcpy(all->prefix, "+");
-			all->arg_len++;
+			all->arg_len = 1;
 		}
 	}
 }
