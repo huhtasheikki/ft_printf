@@ -6,7 +6,7 @@
 /*   By: hhuhtane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 13:10:51 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/26 17:01:16 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/07 09:18:01 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_dstruct
+{
+	t_ul64			m : 52;
+	t_ul64			exp : 11;
+	t_ul64			sign : 1;
+}					t_dstruct;
+
+typedef union		u_doubleu
+{
+	double			ld;
+	t_dstruct		bits;
+}					t_doubleu;
 
 int					ft_tolower(int c);
 int					ft_toupper(int c);
@@ -117,9 +130,19 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 /*
+** FLOATING POINT VARIABLE FUNCTIONS
+*/
+double				ft_frexp(double x, int *exp);
+
+/*
+** BITMASK FUNTIONS
+*/
+t_u32				ft_bitmask_u32(t_u32 n);
+t_u64				ft_bitmask_u64(t_u64 n);
+
+/*
 ** VARIABLE LENGTH QUATITY FUNCTIONS
 */
 t_u64				*ft_vlqnew(t_u32 size);
-char				*ft_bignumtoa(long double f);
 
 #endif

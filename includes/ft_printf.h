@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 17:41:37 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/26 16:13:39 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/07 09:54:12 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,11 +201,13 @@ void				ft_flag_plus(void *param); //OK
 /* --- L MODIFIERS --- */
 void				ft_l_modifiers(t_all *all);
 
+/*
 void				ft_h_mod(void *param);
 void				ft_hh_mod(void *param);
 void				ft_l_mod(void *param);
 void				ft_ll_mod(void *param);
 void				ft_upl_mod(void *param);
+*/
 /* END OF L MODIFIERS */
 
 int					ft_field_width(t_all *all);
@@ -231,4 +233,6 @@ char				*ft_lftoa_bit(long double f, size_t prec, char *sign); // DELETE
 char				*ft_lftoe(long double f, size_t prec, char *sign);
 int					get_first_decimal(long double f);
 long double			get_decimal_remain(long double f);
+
+void				future_feature(void *param);
 #endif

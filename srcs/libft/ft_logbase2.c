@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/21 10:31:33 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/26 11:29:17 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/08/28 10:43:34 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static t_ul64		g_log2table[256] =
 	7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7
 };
 
-t_ul64				ft_logbase2(t_ul64 val)
+t_u32				ft_log2_32(t_u32 val)
 {
-	t_ul64		temp;
+	t_u32		temp;
 
 	temp = val >> 24;
 	if (temp)
@@ -46,4 +46,14 @@ t_ul64				ft_logbase2(t_ul64 val)
 	if (temp)
 		return (8 + g_log2table[temp]);
 	return (g_log2table[val]);
+}
+
+t_ul64				ft_logbase2(t_ul64 val)
+{
+	t_ul64		temp;
+
+	temp = val >> 32;
+	if (temp)
+		return (32 + ft_log2_32(temp));
+	return (ft_log2_32(val));
 }

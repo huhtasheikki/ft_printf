@@ -6,12 +6,12 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 11:05:40 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/26 12:48:58 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/07 09:15:49 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_SHORT_H
-# define LIBFT_SHORT_H
+#ifndef LIBFT_SHORTHAND_H
+# define LIBFT_SHORTHAND_H
 
 /*
 ** SHORTHANDS FOR VARIABLE TYPES WITH BITSIZES

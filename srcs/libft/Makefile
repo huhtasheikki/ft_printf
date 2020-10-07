@@ -6,7 +6,7 @@
 #    By: hhuhtane <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 11:39:33 by hhuhtane          #+#    #+#              #
-#    Updated: 2020/08/10 12:24:21 by hhuhtane         ###   ########.fr        #
+#    Updated: 2020/10/07 09:17:18 by hhuhtane         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -88,7 +88,12 @@ SRCS =	ft_putchar.c \
 		ft_longlonglen_base.c \
 		ft_strtoupper.c \
 		ft_lstappend.c \
-		ft_pow.c
+		ft_pow.c \
+		ft_log10.c \
+		ft_logbase2.c \
+		ft_frexp.c \
+		ft_bitmask.c \
+		ft_vlqnew.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 
