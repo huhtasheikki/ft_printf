@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 10:00:34 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/08/27 21:58:16 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/07 09:23:04 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,56 @@ int		main(void)
 //	printf("sign = %x\n", d1.parts.sign);
 //	printf("exponent = %x\n", d1.parts.exponent);
 //	printf("mantisa = %x\n", d1.parts.mantissa);
+
+	printf("O %.0p, %.p\n", 0, 0);
+	ft_printf("F %.0p, %.p\n", 0, 0);
+
+	printf("O %.5p\n", 0);
+	ft_printf("F %.5p\n", 0);
+
+//	printf("O %2.9p\n", 1234)
+//	ft_printf("F %2.9p\n", 1234)
+
+	ft_putendl("__________");
+
+	printf("%#.f\n", 4.5);
+	ft_printf("%#.f\n", 4.5);
+//	while(1);
+
+	ft_printf("\n");
+	ft_printf("%%\n");
+	ft_printf("%d\n", 42);
+	ft_printf("%d%d\n", 42, 41);
+	ft_printf("%d%d%d\n", 42, 43, 44);
+	ft_printf("%ld\n", 2147483647);
+	ft_printf("%lld\n", 9223372036854775807);
+	ft_printf("%x\n", 505);
+	ft_printf("%X\n", 505);
+	ft_printf("%p\n", &ft_printf);
+	ft_printf("%20.15d\n", 54321);
+	ft_printf("%-10d\n", 3);
+	ft_printf("% d\n", 3);
+	ft_printf("%+d\n", 3);
+	ft_printf("%010d\n", 1);
+	ft_printf("%hhd\n", 0);
+	ft_printf("%jd\n", 9223372036854775807);
+	ft_printf("%zd\n", 4294967295);
+	ft_printf("\n");
+	ft_printf("%\n");
+	ft_printf("\n");
+	ft_printf("%U\n", 4294967295);
+	ft_printf("%u\n", 4294967295);
+	ft_printf("%o\n", 40);
+	ft_printf("%%#08x\n", 42);
+	ft_printf("%x\n", 1000);
+	ft_printf("%#X\n", 1000);
+	ft_printf("%s\n", NULL);
+	ft_printf("%S\n", L"ݗݜशব");
+	ft_printf("%s%s\n", "test", "test");
+	ft_printf("%s%s%s\n", "test", "test", "test");
+	ft_printf("%C\n", 15000);
+
+
 
 	printf("sizeof(double)=%lu sizeof(float)=%lu \n", sizeof(double), sizeof(float));
 
@@ -306,8 +356,8 @@ int		main(void)
 	dip = 1.2E0;
 	printf("THIS THIS O %Le \n", dip);
 	ft_printf("THIS THIS O %Le \n", dip);
-	ft_putendl("ft_lftoe dip");
-	ft_putendl(ft_lftoe(dip, 6, str));
+//	ft_putendl("ft_lftoe dip");
+//	ft_putendl(ft_lftoe(dip, 6, str));
 
 	t_ldbits		frank;
 
@@ -320,8 +370,8 @@ int		main(void)
 	printf("O exp=0 eli %Le \n", frank.ld);
 	ft_printf("F exp=0 eli %Le \n", frank.ld);
 //	printf("O exp:|%u| \n", frank.bits.exp >> 3);
-	ft_putendl("ft_lftoe frank.ld");
-	ft_putendl(ft_lftoe(frank.ld, 6, str));
+//	ft_putendl("ft_lftoe frank.ld");
+//	ft_putendl(ft_lftoe(frank.ld, 6, str));
 
 	printf("%.03s|\n", "hi ");
 	ft_printf("%.03s|\n", "hi ");
@@ -388,6 +438,10 @@ int		main(void)
 	printf("log10= |%d| \n", ft_log10((long double)LONG_MAX));
 */
 
+
+
+
+
 //	frank.ld = 1;
 	frank.ld = 0.1;
 //	frank.bits.integer = 1;
@@ -427,6 +481,73 @@ int		main(void)
 	frank.bits.sign = 0;
 	printf("SMALLEST F=\n|%.4934Lf|\n", frank.ld);
 	ft_printf("SMALLEST F=\n|%.4934Lf|\n", frank.ld);
+
+	printf("prosentti a =|%a|\n", 0.5623132515);
+
+	frank.ld = 1434434434434434.543;
+	printf("O a=|%La|\n", frank.ld);
+
+	printf("Log2 50=|%llu|\n", ft_logbase2(1.1258999068427777777e+15));
+
+	printf("O {%*3d}\n", 5, 0);
+	ft_printf("F {%*3d}\n", 5, 0);
+
+	printf("O |%05.*d|\n", -15, 42);
+	ft_printf("F |%05.*d|\n", -15, 42);
+
+	printf("O {%*c}\n", -15, 0);
+	ft_printf("O {%*c}\n", -15, 0);
+
+	ft_printf("F %b\n", NULL);
+
+	printf("O %2.9p\n", 1234);
+	ft_printf("F %2.9p\n", 1234);
+
+	printf("O %#.o, %#.0o\n", 0, 0);
+	ft_printf("F %#.o, %#.0o\n", 0, 0);
+
+	printf("O %#.3o\n", 1);
+	ft_printf("F %#.3o\n", 1);
+
+	ft_putnbr(printf("O {%*+c}\n", -15, 0));
+	ft_putchar('\n');
+	ft_putnbr(ft_printf("F {%*+c}\n", -15, 0));
+	ft_putchar('\n');
+
+	char	nullstr[5];
+	nullstr[0] = '\0';
+	nullstr[1] = '\0';
+	nullstr[2] = '\0';
+	nullstr[3] = '\0';
+	nullstr[4] = '\0';
+	char	nullc;
+
+	nullc = '\0';
+
+
+	ft_putnbr(printf("%s", nullstr));
+	ft_putchar('\n');
+	ft_putnbr(printf("%c%c%c%c\n", nullc, nullc, nullc, nullc));
+	ft_putchar('\n');
+	ft_putnbr(ft_printf("%c%c%c%c\n", nullc, nullc, nullc, nullc));
+	ft_putchar('\n');
+	ft_putchar('\n');
+
+	ft_putnbr(printf("O {%.*d}\n", 0, 42));
+	ft_putchar('\n');
+	ft_putnbr(ft_printf("F {%.*d}\n", 0, 42));
+	ft_putchar('\n');
+
+	printf("O {%#.5x}\n", 1);
+	ft_printf("F {%#.5x}\n", 1);
+
+	printf("O |%.*d|\n", 0, 42);
+	ft_printf("O |%.*d|\n", 0, 42);
+
+	james.ld = ft_pow(10, 40) * 123;
+//	james.bits.exp = 43;
+	printf("MIKSI O |%Lf|\n", james.ld);
+	ft_printf("MIKSI F |%Lf|\n", james.ld);
 
 	return (0);
 }
