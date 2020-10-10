@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 17:41:37 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/10/07 12:46:02 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/09 11:45:58 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 *************************
 */
 int				ft_printf(const char *format, ...);
+int				ft_asprintf(char **ret, const char *format, ...);
 int				ft_initialize(t_all *all, const char *format, size_t *len);
 int				ft_parse(t_all *all);
 int				get_variable(t_all *all);
@@ -40,7 +41,7 @@ void			convert_char(void *param);
 void			convert_str(void *param);
 void			convert_ptr(void *param);
 
-void			ft_reset_format_info(t_all *all); //ok, check unused
+int				ft_reset_format_info(t_all *all);
 
 /*
 ***********

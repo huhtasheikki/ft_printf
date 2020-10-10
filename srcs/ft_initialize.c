@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 13:16:47 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/10/07 09:56:11 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/09 11:59:18 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,18 @@ void	ft_init_fun_ptr(t_all *all)
 	all->convert_fun_ptr[PERCENT_INDEX] = &convert_percent;
 }
 
+/*
+** FT_INITIALIZE initializes all the start values and function
+** pointers.
+*/
+
 int		ft_initialize(t_all *all, const char *format, size_t *len)
 {
 	all->format_ptr = (char*)format;
 	all->len = len;
 	*all->len = 0;
-	all->parsed_args = ft_lstnew(NULL, 0);
+	if (!(all->parsed_args = ft_lstnew(NULL, 0)))
+		return (0);
 	all->last_arg = all->parsed_args;
 	ft_strncpy(all->flags_str, FLAGS, FLAGS_SIZE + 1);
 	ft_strncpy(all->l_modifier_str, L_MODIFIER, L_MOD_SIZE + 1);

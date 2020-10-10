@@ -6,7 +6,7 @@
 /*   By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 20:53:19 by hhuhtane          #+#    #+#             */
-/*   Updated: 2020/10/07 14:07:05 by hhuhtane         ###   ########.fr       */
+/*   Updated: 2020/10/09 11:44:45 by hhuhtane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ int				get_variable(t_all *all)
 {
 	if (*all->format_ptr != '%')
 		return (1);
-	if (!get_variable_info(all))
-		return (1);
+	if (!(get_variable_info(all)))
+		return (0);
 	ft_collect_var(all);
 	ft_do_flags(all);
 	ft_arg_convert(all);

@@ -6,7 +6,7 @@
 #    By: hhuhtane <hhuhtane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 18:09:10 by hhuhtane          #+#    #+#              #
-#    Updated: 2020/10/07 11:28:59 by hhuhtane         ###   ########.fr        #
+#    Updated: 2020/10/09 11:16:31 by hhuhtane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,17 +74,21 @@ test: fclean all
 
 norm:
 		@echo "Norminette $(COLOR_TITLE)$(SRC_DIR)$(COLOR_RESET)"
-		norminette ./srcs
+		norminette $(SRC_DIR)
 		@echo "Norminette $(COLOR_TITLE)$(LIBFT_DIR)$(COLOR_RESET)"
 		norminette $(LIBFT_DIR)
+		@echo "Norminette $(COLOR_TITLE)./includes$(COLOR_RESET)"
+		norminette includes/
 
 clean:
 		@make clean -C $(LIBFT_DIR)
 		@echo "REVOVE $(COLOR_TITLE)$(OBJ)$(COLOR_RESET)"
 		@rm -f $(OBJ)
+		@find . -type f -name '*~' -print -delete -o -name "#*#" -print -delete
 
 fclean: clean
-	@make fclean -C $(LIBFT_DIR)
-	@rm -f $(NAME)
+		@make fclean -C $(LIBFT_DIR)
+		@rm -f $(NAME)
+		@rm -f a.out
 
 re: fclean all
